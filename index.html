@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Virtual Support</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font:16px system-ui;background:#f7f7f8;color:#202123}.app{height:100vh;max-width:900px;margin:auto;background:white;display:flex;flex-direction:column}header{padding:16px;border-bottom:1px solid #e5e7eb;display:flex;gap:12px;align-items:center}.logo{background:#e8efff;color:#2563eb;border-radius:12px;padding:10px;font-weight:bold}.sub{font-size:12px;color:#6b7280}.notice{margin:12px auto;padding:8px 12px;border:1px solid #e5e7eb;background:#f3f4f6;border-radius:10px;font-size:12px;color:#555;text-align:center}.messages{flex:1;overflow:auto;padding:20px;display:flex;flex-direction:column;gap:14px}.welcome{text-align:center;margin:auto;max-width:500px}.welcome p{color:#6b7280;line-height:1.6}.msg{max-width:80%;padding:12px 15px;border-radius:16px;background:#f3f4f6;white-space:pre-wrap;overflow-wrap:anywhere}.user{align-self:flex-end;background:#e8efff}.composer{padding:12px;border-top:1px solid #e5e7eb;display:flex;gap:10px}.composer textarea{flex:1;resize:none;border:1px solid #d1d5db;border-radius:14px;padding:12px;font:inherit;outline:none}.composer button{background:#2563eb;color:white;border:0;border-radius:12px;padding:0 18px;font-weight:600}.foot{text-align:center;color:#9ca3af;font-size:11px;padding:0 0 10px}@media(max-width:600px){.msg{max-width:92%}}
+</style>
+<div class="app"><header><div class="logo">VS</div><div><b>Virtual Support</b><div class="sub">Human-assisted chat · Demo</div></div></header>
+<div class="notice">Prototype: messages stay in this browser. No support agent is connected.</div>
+<main class="messages" id="messages"><div class="welcome" id="welcome"><h2>How can we help?</h2><p>Send a message to test the chat. In a live version, a support person would respond through a separate dashboard.</p></div></main>
+<div class="composer"><textarea id="input" rows="1" placeholder="Write a message…"></textarea><button id="send">Send</button></div><div class="foot">Virtual Support · Human-assisted service</div></div>
+<script>
+const m=document.querySelector('#messages'),i=document.querySelector('#input');
+function send(){let t=i.value.trim();if(!t)return;document.querySelector('#welcome')?.remove();let b=document.createElement('div');b.className='msg user';b.textContent=t;m.append(b);i.value='';m.scrollTop=m.scrollHeight;let n=document.createElement('div');n.className='sub';n.textContent='Demo only: no agent is connected.';m.append(n);setTimeout(()=>n.remove(),2500)}
+document.querySelector('#send').onclick=send;i.onkeydown=e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send()}}
+</script></html>
